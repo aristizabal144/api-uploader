@@ -13,9 +13,10 @@ const upload = async (req, res) => {
 
         file = await convertJpgToPng(file);
         const result = await uploadToBucket(bucket, file);
+        let nowDate = new Date();
 
         let fileModel = {
-            fecha: new Date(),
+            fecha: new Date(nowDate.setUTCHours(nowDate.getUTCHours() - 5)),
             nombre: req.body.name,
             url: result.Location
         }
@@ -54,7 +55,7 @@ const getFilesByHour = async (req, res) => {
 }
 
 
-const getFilesByDate =  async (req, res) => {
+const getFilesByDate = async (req, res) => {
 
     try {
         let startDateParam = req.query.startDate;
