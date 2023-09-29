@@ -8,6 +8,7 @@ class Server {
     constructor(){
         this.app = express();
         this.port = process.env.PORT || '8080';
+        this.cors();
         this.middlewares();
         this.routes();
     }
@@ -31,6 +32,10 @@ class Server {
         this.app.listen(this.port,()=>{
             console.log('Listening on port',this.port);
         });
+    }
+
+    cors(){
+        this.app.use(cors());
     }
 
     
