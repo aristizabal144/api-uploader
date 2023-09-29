@@ -12,11 +12,10 @@ const storage = new S3({
 });
 
 const uploadToBucket = (bucketName,file) => {
-    const stream = fs.createReadStream(file.tempFilePath);
     const params = {
         Bucket:bucketName,
         Key:file.name,
-        Body:stream
+        Body:file.data
     };
     return storage.upload(params).promise();
 };
