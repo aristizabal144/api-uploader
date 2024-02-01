@@ -11,18 +11,9 @@ const upload = async (req, res) => {
         let file = req.files.file;
         const bucket = req.body.bucket;
 
-        file = await convertJpgToPng(file);
         const result = await uploadToBucket(bucket, file);
-        let nowDate = new Date();
 
-        let fileModel = {
-            fecha: new Date(nowDate.setUTCHours(nowDate.getUTCHours() - 5)),
-            nombre: req.body.name,
-            url: result.Location
-        }
-        await saveFileDb(fileModel);
-
-        res.status(201).json({ isError: false, msj: 'Registro almacenado con éxito' });
+        res.status(201).json({ isError: false, msj: result.Location });
     } catch (error) {
         console.error('Error al guardar el registro:', error);
         res.status(500).json({ isError: true, msj: 'Error al guardar el registro' });
