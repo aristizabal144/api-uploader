@@ -11,6 +11,7 @@ const upload = async (req, res) => {
         let file = req.files.file;
         const bucket = req.body.bucket;
 
+        file = await convertJpgToPng(file);
         const result = await uploadToBucket(bucket, file);
 
         res.status(201).json({ isError: false, msj: result.Location });
