@@ -6,7 +6,5 @@ const {verifyFile} = require('../middlewares/verifyFile');
 const router = Router();
 
 router.post('/',verifyFile,upload);
-router.get('/',getFilesByDate);
-router.get('/by-hour',getFilesByHour);
 
 module.exports = router;

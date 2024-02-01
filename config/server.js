@@ -13,7 +13,6 @@ class Server {
         this.cors();
         this.middlewares();
         this.routes();
-        this.initDataBase();
     }
 
     middlewares(){
@@ -41,11 +40,6 @@ class Server {
         this.app.use(cors());
     }
 
-    initDataBase(){
-        mongoose.connect('mongodb://localhost:27017/uploader-db', {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,}); 
-    }
 }
 
 module.exports = Server;
